@@ -16,10 +16,37 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Source\pch">
+      <UniqueIdentifier>{52e63090-0acb-4aeb-a1dd-8745c367c963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Icons">
+      <UniqueIdentifier>{b7bcbe3b-f09e-42bc-a971-ae91f2e34b61}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\WinMain.cpp">
       <Filter>Source\Private</Filter>
     </ClCompile>
+    <ClCompile Include="Source\pch.cpp">
+      <Filter>Source\pch</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\pch.h">
+      <Filter>Source\pch</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GD-ENG2_GameEngine.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Icons\cheeze.ico">
+      <Filter>Resources\Icons</Filter>
+    </Image>
   </ItemGroup>
 </Project>

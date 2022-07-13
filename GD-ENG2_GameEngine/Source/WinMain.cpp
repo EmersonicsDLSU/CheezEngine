@@ -1,61 +1,102 @@
-#include <Windows.h>
+#include "pch.h"
 
-#define MAX_NAME_STRING 256
-#define HInstance() GetModuleHandle(NULL)
-
+/* ---------------------------------------- */
+/* Global Variables							*/
+/* ---------------------------------------- */
+#pragma region GlobalVariables
 WCHAR WindowClass[MAX_NAME_STRING];
 WCHAR WindowTitle[MAX_NAME_STRING];
 
 INT WindowWidth;
 INT WindowHeight;
 
+HICON hIcon;
+#pragma endregion
+/* ---------------------------------------- */
+
+/* ---------------------------------------- */
+/* Pre-Declarations						*/
+/* ---------------------------------------- */
+#pragma region Pre-Declarations
+VOID InitializeVariables();
+VOID CreateWindowClass();
+VOID InitializeWindow();
+VOID MessageLoop();
+LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam);
+#pragma endregion
+/* ---------------------------------------- */
+
+
+/* ---------------------------------------- */
+/* Operations								*/
+/* ---------------------------------------- */
+#pragma region Operations
 int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT)
 {
-	/* - Initialize Global Variables - */
+	InitializeVariables();
+	CreateWindowClass();
+	InitializeWindow();
+	MessageLoop();
+	return 0;
+}
+LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam)
+{
+	switch (message) {
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		break;
+	}
 
-	wcscpy(WindowClass, TEXT("TutorialOneClass"));
-	wcscpy(WindowTitle, TEXT("Our First Window"));
+	return DefWindowProc(hWnd, message, wparam, lparam);
+}
+#pragma endregion
+/* ---------------------------------------- */
+
+/* ---------------------------------------- */
+/* Functions								*/
+/* ---------------------------------------- */
+#pragma  region Funcitons
+VOID InitializeVariables()
+{
+	LoadString(HInstance(), IDS_PERGAMENAME, WindowTitle, MAX_NAME_STRING);
+	LoadString(HInstance(), IDS_WINDOWCLASS, WindowClass, MAX_NAME_STRING);
+	
 	WindowWidth = 1366;
 	WindowHeight = 768;
+	hIcon = LoadIcon(HInstance(), MAKEINTRESOURCE(IDI_MAINICON));
+}
 
-	/* - Create Window Class - */
-
+VOID CreateWindowClass()
+{
 	WNDCLASSEX wcex;
-
 	wcex.cbSize = sizeof(WNDCLASSEX);
 	wcex.style = CS_HREDRAW | CS_VREDRAW;
 	wcex.cbClsExtra = 0;
 	wcex.cbWndExtra = 0;
-
 	wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)GetStockObject(NULL_BRUSH);
-
-	wcex.hIcon = LoadIcon(0, IDI_APPLICATION);
-	wcex.hIconSm = LoadIcon(0, IDI_APPLICATION);
-
+	wcex.hIcon = hIcon;
+	wcex.hIconSm = hIcon;
 	wcex.lpszClassName = WindowClass;
 	wcex.lpszMenuName = nullptr;
-
 	wcex.hInstance = HInstance();
-
-	wcex.lpfnWndProc = DefWindowProc;
-
+	wcex.lpfnWndProc = WindowProcess;
 	RegisterClassEx(&wcex);
-
-	/* - Create and Display our Window - */
-
+}
+void InitializeWindow()
+{
 	HWND hWnd = CreateWindow(WindowClass, WindowTitle, WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, 0, WindowWidth, WindowHeight, nullptr, nullptr, HInstance(), nullptr);
 	if (!hWnd)
 	{
 		MessageBox(0, L"Failed to Create Window!.", 0, 0);
-		return 0;
+		PostQuitMessage(0);
 	}
-
 	ShowWindow(hWnd, SW_SHOW);
+}
 
-	/* - Listen for Message Events - */
-
+void MessageLoop()
+{
 	MSG msg = {0};
 	while (msg.message != WM_QUIT)
 	{
@@ -66,6 +107,7 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT)
 			DispatchMessage(&msg);
 		}
 	}
-
-	return 0;
 }
+#pragma endregion
+/* ---------------------------------------- */
+
