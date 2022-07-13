@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.32602.291
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GD-ENG2_GameEngine", "GD-ENG2_GameEngine\GD-ENG2_GameEngine.vcxproj", "{6BCB5454-82C4-4C52-AF85-184BDADC26BE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cheez_GameEngine", "Cheez_GameEngine\Cheez_GameEngine.vcxproj", "{DD829B78-95B8-4DAC-96ED-A7D7ABBE5AED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -15,6 +17,10 @@ Global
 		{6BCB5454-82C4-4C52-AF85-184BDADC26BE}.Debug|x64.Build.0 = Debug|x64
 		{6BCB5454-82C4-4C52-AF85-184BDADC26BE}.Release|x64.ActiveCfg = Release|x64
 		{6BCB5454-82C4-4C52-AF85-184BDADC26BE}.Release|x64.Build.0 = Release|x64
+		{DD829B78-95B8-4DAC-96ED-A7D7ABBE5AED}.Debug|x64.ActiveCfg = Debug|x64
+		{DD829B78-95B8-4DAC-96ED-A7D7ABBE5AED}.Debug|x64.Build.0 = Debug|x64
+		{DD829B78-95B8-4DAC-96ED-A7D7ABBE5AED}.Release|x64.ActiveCfg = Release|x64
+		{DD829B78-95B8-4DAC-96ED-A7D7ABBE5AED}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
